@@ -149,8 +149,7 @@ class _CustomCupertinoDatePickerState extends State<CustomCupertinoDatePicker> {
           }
 
           // Update day
-          widget.onSelectDate(DateTime(_yearController.selectedItem,
-              _monthController.selectedItem, value + 1));
+          _update();
           break;
         }
       case PickerType.month:
@@ -192,8 +191,7 @@ class _CustomCupertinoDatePickerState extends State<CustomCupertinoDatePicker> {
           });
 
           // Update month
-          widget.onSelectDate(DateTime(_yearController.selectedItem,
-              _monthController.selectedItem, _dayController.selectedItem));
+          _update();
           break;
         }
       case PickerType.year:
@@ -222,11 +220,15 @@ class _CustomCupertinoDatePickerState extends State<CustomCupertinoDatePicker> {
           });
 
           // Update year
-          widget.onSelectDate(DateTime(_yearController.selectedItem,
-              _monthController.selectedItem, _dayController.selectedItem));
+          _update();
           break;
         }
     }
+  }
+
+  _update(){
+    widget.onSelectDate(DateTime(DateTime.now().year + _yearController.selectedItem,
+        _monthController.selectedItem + 1, _dayController.selectedItem + 1));
   }
 
   _getScrollController(PickerType type) {
